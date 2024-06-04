@@ -44,16 +44,6 @@ public class Quest {
         question3.addAnswer(answer6);
     }
 
-    private Properties loadFile(String file) {
-        Properties properties = new Properties();
-        try {
-            properties.load(new FileReader(file, StandardCharsets.UTF_8));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return properties;
-    }
-
     public Question getMainQuestion() {
         return mainQuestion;
     }
