@@ -23,8 +23,8 @@
         answer1 = q.getAnswers().get(1).getAnswerText();
     }
 %>
-<h1><%=questionText%>
-</h1>
+<h4><%=questionText%>
+</h4>
 
 <form action="quest-servlet" method="get">
     <input type="radio" id="answer0" name="positive" value="true">

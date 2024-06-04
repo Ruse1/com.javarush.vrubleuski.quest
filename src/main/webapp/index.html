@@ -9,18 +9,21 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </head>
 <body>
-<h2>Пролог</h2>
+<h3>Пролог</h3>
 <p>Ты потерял память и тебе как-то нужно вернуться домой.</p>
 <p>Поэтому ты должен сделать всё, что в твоих силах, чтобы достичь цели.</p>
 <p>Удачи!</p>
 <br>
 <br>
 <br>
-<h2>Знакомство с незнакомцом</h2>
+<h3>Знакомство с незнакомцом</h3>
 <p>Перед началом игры требуется познакомиться:</p>
 <form action="start-servlet" method="get" >
     Name: <input name="username"/>
-    <right><input type="submit" value="Submit"/></right>
+    <right>
+    <input type="submit" value="username" class="btn-check" id="btn-check-2" checked autocomplete="off">
+    <label class="btn btn-primary" for="btn-check-2">Submit</label>
+    </right>
 </form>
 </body>
 </html>

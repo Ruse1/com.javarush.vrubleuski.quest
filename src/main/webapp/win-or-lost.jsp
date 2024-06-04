@@ -10,7 +10,7 @@
 <body>
 <br>
 <br>
-<h2><%=session.getAttribute("WinOrLost")%></h2>
+<h4><%=session.getAttribute("WinOrLost")%></h4>
 <form action="index.html" method="get" >
     <right><input type="submit" value="Начать заново"/></right>
 </form>
