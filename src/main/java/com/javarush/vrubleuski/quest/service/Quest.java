@@ -3,10 +3,6 @@ package com.javarush.vrubleuski.quest.service;
 import com.javarush.vrubleuski.quest.entity.Answer;
 import com.javarush.vrubleuski.quest.entity.Question;
 
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-
 import java.util.Properties;
 
 public class Quest {
