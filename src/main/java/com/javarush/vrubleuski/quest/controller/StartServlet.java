@@ -15,14 +15,13 @@ import java.util.Properties;
 @WebServlet(name = "startServlet", value = "/start-servlet")
 public class StartServlet extends HttpServlet {
     private Properties prop;
+
     @Override
     public void init() {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         InputStream stream = loader.getResourceAsStream("/context-quest.properties");
-        InputStreamReader inputStreamReader = new InputStreamReader(stream, StandardCharsets.UTF_8);
-
-        prop = new Properties();
-        try {
+        try (InputStreamReader inputStreamReader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
+            prop = new Properties();
             prop.load(inputStreamReader);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -30,7 +29,7 @@ public class StartServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         Quest quest = new Quest(prop);
         Question mainQuestion = quest.getMainQuestion();
         HttpSession session = req.getSession(true);

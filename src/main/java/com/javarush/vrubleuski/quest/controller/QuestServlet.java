@@ -13,31 +13,30 @@ public class QuestServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-        if (req.getParameter("negative") != null || req.getParameter("positive") != null) {
+        if (req.getParameter("answer") != null) {
             HttpSession session = req.getSession();
+            String answer = req.getParameter("answer");
             Question questionFromJsp = (Question) session.getAttribute("question");
+
+            if (answer.equals("no")) {
+                String lost = questionFromJsp.getAnswers().get(1).getAnswerEndGameText();
+                session.setAttribute("WinOrLost", lost);
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/win-or-lost.jsp");
+                requestDispatcher.forward(req, resp);
+            }
 
             if (questionFromJsp.getAnswers().get(0).nextQuestion() != null) {
                 Question nextQuestion = questionFromJsp.getAnswers().get(0).nextQuestion();
                 session.setAttribute("question", nextQuestion);
+                resp.sendRedirect("/quest.jsp");
             } else {
-                String positive = req.getParameter("positive");
-                if (positive != null && req.getParameter("positive").equals("true")) {
+                if (answer.equals("yes")) {
                     String win = questionFromJsp.getAnswers().get(0).getAnswerEndGameText();
                     session.setAttribute("WinOrLost", win);
                     RequestDispatcher requestDispatcher = req.getRequestDispatcher("/win-or-lost.jsp");
                     requestDispatcher.forward(req, resp);
                 }
             }
-
-            String negative = req.getParameter("negative");
-            if (negative != null && negative.equals("false")) {
-                String lost = questionFromJsp.getAnswers().get(1).getAnswerEndGameText();
-                session.setAttribute("WinOrLost", lost);
-                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/win-or-lost.jsp");
-                requestDispatcher.forward(req, resp);
-            }
-            resp.sendRedirect("/quest.jsp");
         } else {
             resp.sendRedirect("/quest.jsp");
         }
