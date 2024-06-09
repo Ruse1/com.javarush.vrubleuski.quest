@@ -13,6 +13,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
             integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/general.css">
 </head>
 <body>
 <br>
@@ -30,32 +31,36 @@
 %>
 <h4><%=questionText%>
 </h4>
-
+<p>
 <form action="quest-servlet" method="get">
-    <div>
-        <input type="radio" id="answer0" name="answer" value="yes">
-        <label for="answer0">
+    <div class="form-check">
+        <input class = "form-check-input" type="radio" id="answer0" name="answer" value="yes">
+        <label class="form-check-label" for="answer0">
             <%= answer0 %>
             <% session.setAttribute("question", q); %>
         </label><br>
 
-        <input type="radio" id="answer1" name="answer" value="no">
-        <label for="answer1">
+        <input class = "form-check-input" type="radio" id="answer1" name="answer" value="no">
+        <label class="form-check-label" for="answer1">
             <%= answer1 %>
             <% session.setAttribute("question", q); %>
         </label><br>
     </div>
     <div>
-        <button type="submit">Ответить</button>
+        <button type="submit" class="btn btn-success">Ответить</button>
     </div>
 </form>
+</p>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
 <br>
 <br>
 <p><b>Статистика:</b>
-    <br>Имя в игре:<b><%= session.getAttribute("username") %>
+    <br>Имя в игре: <b><%= session.getAttribute("username") %>
     </b>
     <br>Количество игр: <b><%= session.getAttribute("count") %>
     </b>
